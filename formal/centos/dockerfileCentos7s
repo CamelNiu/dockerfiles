@@ -1,8 +1,13 @@
 FROM centos:centos7
-RUN yum update -y;\
+RUN
+    yum update -y;\
     yum -y install telnet;\
     yum -y install net-tools;\
     yum -y install wget;\
     yum -y install mlocate;\
+    yum -y install git;\
+    yum -y install tree;\
+    yum -y install gcc;\
+    yum -y install gcc-c++;\
 
 
