@@ -1,6 +1,5 @@
 FROM centos:centos7
-RUN
-    yum update -y;\
+RUN yum update -y;\
     yum -y install telnet;\
     yum -y install net-tools;\
     yum -y install wget;\
