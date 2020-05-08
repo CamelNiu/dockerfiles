@@ -3,3 +3,4 @@ RUN yum update -y;\
     yum -y install telnet net-tools wget mlocate git tree gcc gcc-c++ vim;\
 
 
+export PATH=/usr/local/redis/bin:$PATH
