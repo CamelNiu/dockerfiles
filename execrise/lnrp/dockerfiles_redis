@@ -3,7 +3,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   && apk add  gcc g++ libc-dev  wget vim  openssl-dev make  linux-headers \
   && rm -rf /var/cache/apk/*
 
-COPY ./redis-5.0.7.tar.gz redis-5.0.7.tar.gz
+COPY ./source/redis-5.0.7.tar.gz redis-5.0.7.tar.gz
 
 #通过选择更小的镜像，删除不必要文件清理不必要的安装缓存，从而瘦身镜像
 #创建相关目录能够看到日志信息跟数据跟配置文件  sh
@@ -18,6 +18,6 @@ RUN mkdir -p /usr/src/redis \
       && cd /usr/src/redis/redis-5.0.7 && make install;
 
 EXPOSE 6379
-
+COPY ./conf/redis.conf /redis/conf/redis.conf
 CMD ["redis-server","/redis/conf/redis.conf"]
 #ENTRYPOINT ["redis-server", "/usr/src/redis/redis-5.0.7/redis.conf"]
