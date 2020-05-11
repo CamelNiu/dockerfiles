@@ -1,0 +1,90 @@
+
+
+wget https://github.com/kkos/oniguruma/archive/v6.9.4.tar.gz -O oniguruma-6.9.4.tar.gz
+tar -zxvf oniguruma-6.9.4.tar.gz
+cd oniguruma-6.9.4/
+./autogen.sh
+./configure
+make
+sudo make install
+
+yum install install autoconf automake libtool
+
+
+
+./configure \
+--prefix=/usr/local/php \
+--with-config-file-path=/usr/local/php/etc/ \
+--enable-fpm \
+--with-fpm-user=www  \
+--with-fpm-group=www \
+--enable-inline-optimization \
+--disable-debug \
+--disable-rpath \
+--enable-shared  \
+--enable-soap \
+--with-libxml-dir \
+--with-xmlrpc \
+--with-openssl \
+--with-mcrypt \
+--with-mhash \
+--with-pcre-regex \
+--with-sqlite3 \
+--with-zlib \
+--enable-bcmath \
+--with-iconv \
+--with-bz2 \
+--enable-calendar \
+--with-curl \
+--with-cdb \
+--enable-dom \
+--enable-exif \
+--enable-fileinfo \
+--enable-filter \
+--with-pcre-dir \
+--enable-ftp \
+--with-gd \
+--with-openssl-dir \
+--with-jpeg-dir \
+--with-png-dir \
+--with-zlib-dir  \
+--with-freetype-dir \
+--enable-gd-native-ttf \
+--enable-gd-jis-conv \
+--with-gettext \
+--with-gmp \
+--with-mhash \
+--enable-json \
+--enable-mbstring \
+--enable-mbregex \
+--enable-mbregex-backtrack \
+--with-libmbfl \
+--with-onig \
+--enable-pdo \
+--with-mysqli=mysqlnd \
+--with-pdo-mysql=mysqlnd \
+--with-zlib-dir \
+--with-pdo-sqlite \
+--with-readline \
+--enable-session \
+--enable-shmop \
+--enable-simplexml \
+--enable-sockets  \
+--enable-sysvmsg \
+--enable-sysvsem \
+--enable-sysvshm \
+--enable-wddx \
+--with-xsl \
+--enable-zip \
+--enable-mysqlnd-compression-support \
+--with-pear \
+--enable-opcache
+
+
+
+
+yum -y install http://mirror.centos.org/centos-7/7.7.1908/cloud/x86_64/openstack-queens/oniguruma-6.7.0-1.el7.x86_64.rpm
+yum -y install http://mirror.centos.org/centos-7/7.7.1908/cloud/x86_64/openstack-queens/oniguruma-devel-6.7.0-1.el7.x86_64.rpm
+
+
+

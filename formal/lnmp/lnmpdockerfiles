@@ -1,0 +1,7 @@
+#dockerfile V1版本专用
+
+FROM niushaogang/centos7-lnmp:v1
+
+EXPOSE 80
+
+CMD ["/root/lnmp/init.sh"]
