@@ -74,6 +74,7 @@ yum install install autoconf automake libtool
 --enable-sysvsem \
 --enable-sysvshm \
 --enable-wddx \
+--enable-pcntl \
 --with-xsl \
 --enable-zip \
 --enable-mysqlnd-compression-support \
