@@ -1,27 +1,46 @@
 <?php
+//信号处理需要注册ticks才能生效，这里务必注意
+//PHP5.4以上版本就不再依赖ticks了
 
-ini_set('display_errors', 'On');
+require "./rds.php";
 
- echo pcntl_fork();
+$rds = new rds();
+
+while (true) {
+
+    $res = $rds->brpop('niu',5);
+
+    if( empty($res) ) continue;
+
+    $key = $res[0];
+    $value = $res[1];
+
+    $pid = pcntl_fork();
+
+    if ($pid == -1) {
+       continue;
+    } elseif ($pid) {
+
+    } else {
+
+      sumProcess($key,$value);
+
+      exit();
+    }
+
+}
 
 
 
-// require "./rds.php";
 
-// // 安装信号
-// pcntl_signal(SIGUSR1, "sig_handler");
-// function sig_handler($sig){
-//     sleep(2);
-//     echo "这是测试信号的一个测试类\n";
-// }
-// // 是一个安装信号的操作
-// // pid -》 进程pid ， 要设置信号
-// // 根据进程设置信号
-// // posix_getpid获取进程id的
-// posix_kill(posix_getpid(), SIGUSR1);
+function sumProcess($key,$value)
+{
+    $gid = posix_getpid();
 
-// echo "其他事情\n";
-// // 分发
-// pcntl_signal_dispatch();
-// // 信号是配合与多进程使用
-// // posix_getpid =》 只会针对于当前的进程去设置信号
+    $fileName = $value."_".$gid;
+    $content = "余从京域，言归东藩。背伊阙，越轘辕，经通谷，陵景山。日既西倾，车殆马烦。尔乃税驾乎蘅皋，秣驷乎芝田，容与乎阳林，流眄乎洛川。于是精移神骇，忽焉思散。俯则未察，仰以殊观，睹一丽人，于岩之畔。乃援御者而告之曰：尔有觌于彼者乎？彼何人斯？若此之艳也！”御者对曰：臣闻河洛之神，名曰宓妃。然则君王所见，无乃是乎？其状若何？臣愿闻之。".PHP_EOL;
+    for($i=0;$i<1;$i++){
+      file_put_contents("./testfile/".$fileName,$content,FILE_APPEND);
+    }
+    sleep(5);
+}
