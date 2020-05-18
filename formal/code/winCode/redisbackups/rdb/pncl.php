@@ -1,15 +1,32 @@
 <?php
-$pid = pcntl_fork(); // fork
 
-if ($pid == 0) {
-    // 子进程
-    var_dump("子进程");
-} else {
-    // 父进程
-    var_dump("父进程");
+// 3个子进程处理任务
+for ($i = 0; $i < 10; $i++){
+
+    $gid = posix_getpid();
+    var_dump('gid'.$gid);
+
+    var_dump($gid);
+
+    $pid = pcntl_fork();
+
+
+    if ($pid == -1) {
+
+    } elseif ($pid) {
+
+
+
+    } else {// 子进程处理
+
+      //var_dump($i);
+        sleep(3);
+
+      exit();
+
+    }
+
+
 }
 
-
-while (true) {
-  
-}
+where(true)
