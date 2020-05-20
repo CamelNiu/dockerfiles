@@ -17,18 +17,25 @@ while (true) {
 
     $pid = pcntl_fork();
 
+    pcntl_signal(SIGUSR1, function ($sig){
+        Input::info("成功接收到子进程的持久化信息，并且执行完成");
+    });
+
     if ($pid == -1) {
-       continue;
+        throw new Exception("Error Processing Request",-1);
     } elseif ($pid) {
 
     } else {
 
       sumProcess($key,$value);
-
-      exit();
+      posix_kill(posix_getpid(), SIGUSR1);
+      exit;
     }
 
+    pcntl_signal_dispatch();
+
 }
+
 
 
 

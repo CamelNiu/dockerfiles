@@ -1,7 +1,7 @@
 docker network create --subnet=88.88.88.0/24 mynet
 
 
-docker run -itd --name lnmp -v /e/docker/dockerfiles/formal/code/winCode:/data/www -p 8080:80 --network=mynet --ip 88.88.88.2  niushaogang/lnmp-centos7:v5
+docker run -itd --name lnmp -v /e/docker/dockerfiles/formal/code/winCode:/data/www -p 8080:80 --network=mynet --ip 88.88.88.2  niushaogang/lnmp-centos7:v6
 
 
 docker run -itd --name redis2 -p 9082:6379  --network=mynet --ip 8.8.8.2  niushaogang/lnmp-centos7:v5

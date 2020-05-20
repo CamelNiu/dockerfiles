@@ -1,0 +1,58 @@
+sudo yum install gcc gcc-c++ pcre pcre-devel openssl openssl-devel
+sudo yum install zlib zlib-devel cmake ncurses ncurses-devel bison bison-devel
+如下的几个依赖在CentOS7中需要安装,CentOS6不需要
+sudo yum install perl perl-devel autoconf
+
+
+
+
+
+
+1.切换到/usr/local目录，然后在这个目录下下载boost
+
+ MySQL5.7.24要求boost的版本是1.59，更高版本的不适用MySQL5.7.24
+wget http://www.sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz
+
+2.解压并改名
+1
+2
+
+tar zxvf boost_1_59_0.tar.gz
+mv boost_1_59_0 boost
+
+3.在预编译安装MySQL时要加上-DWITH_BOOST=/usr/local/boost
+
+
+
+
+
+
+# 添加MySQL用户
+useradd -s /sbin/nologin -M mysql
+# 下载MySQL
+wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.24.tar.gz
+# 解压MySQL
+tar zxvf mysql-5.7.24.tar.gz
+# 进到MySQL目录
+cd mysql-5.7.24
+# 预编译
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql-5.7.24 \
+-DWITH_BOOST=/usr/local/boost \
+-DMYSQL_UNIX_ADDR=/usr/local/mysql-5.7.24/tmp/mysql.sock \
+-DMYSQL_DATADIR=/usr/local/mysql-5.7.24/data \
+-DDEFAULT_CHARSET=utf8mb4 \
+-DDEFAULT_COLLATION=utf8mb4_general_ci \
+-DWITH_EXTRA_CHARSETS=all \
+-DWITH_MYISAM_STORAGE_ENGINE=1 \
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DWITH_MEMORY_STORAGE_ENGINE=1 \
+-DWITH_READLINE=1 \
+-DWITH_INNODB_MEMCACHED=1 \
+-DWITH_DEBUG=OFF \
+-DWITH_ZLIB=bundled \
+-DENABLED_LOCAL_INFILE=1 \
+-DENABLED_PROFILING=ON \
+-DMYSQL_MAINTAINER_MODE=OFF \
+-DMYSQL_TCP_PORT=3306
+# 编译&安装
+make && make install
