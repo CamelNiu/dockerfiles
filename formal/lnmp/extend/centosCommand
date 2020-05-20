@@ -1,1 +1,1 @@
-docker run -itd --name lnmp --network=mynet --ip 8.8.8.2 -v /data/www:/data/www -p 12000:20 niushaogang/lnmp-centos7:v8
+docker run -itd --name lnmp --network=mynet --ip 8.8.8.2 -v /data/www:/data/www -p 12000:20 niushaogang/lnmp-centos7:v9

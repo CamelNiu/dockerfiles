@@ -1,4 +1,4 @@
-docker network create --subnet=88.88.88.0/24 mynet
+docker network create --subnet=8.8.8.0/24 mynet
 
 
 
