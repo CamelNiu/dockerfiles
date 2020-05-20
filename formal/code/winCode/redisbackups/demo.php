@@ -4,6 +4,7 @@
 
 require "./rds.php";
 
+
 $rds = new rds();
 
 while (true) {
@@ -51,3 +52,4 @@ function sumProcess($key,$value)
     }
     sleep(5);
 }
+
